@@ -6,7 +6,7 @@ class BalancePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // คำนวณยอดเงินรวม
+   
     double total = history.fold(0, (sum, item) => sum + (double.tryParse(item['amount'] ?? '0') ?? 0));
 
     return Scaffold(
@@ -19,16 +19,18 @@ class BalancePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // ส่วนแสดงยอดเงินรวมแบบเรียบง่าย
+          
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 40),
             child: Column(
               children: [
                 const Text(
-                  'ยอดเงินปัจจุบัน',
+                  'ยอดเงินคงเหลือ',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
+                
                 const SizedBox(height: 8),
+
                 Text(
                   '฿${total.toStringAsFixed(2)}',
                   style: const TextStyle(
@@ -40,26 +42,29 @@ class BalancePage extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(indent: 20, endIndent: 20), // เส้นคั่นบางๆ
+
+
+          const Divider(indent: 20, endIndent: 20), 
           
-          // รายการประวัติ
+          
           Expanded(
             child: ListView.builder(
               itemCount: history.length,
               itemBuilder: (context, index) {
-                // เรียงจากใหม่ไปเก่า
+                
                 final item = history[history.length - 1 - index];
+
                 return ListTile(
                   leading: const CircleAvatar(
-                    backgroundColor: Color(0xFFE8F5E9), // สีเขียวอ่อนมาก
-                    child: Icon(Icons.add, color: Colors.green), // ไอคอนสีเขียว
+                    backgroundColor: Color(0xFFE8F5E9), 
+                    child: Icon(Icons.add, color: Colors.green), 
                   ),
                   title: Text(
                     'เติมเงิน ${item['amount']} บาท',
                     style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text('${item['note']}'),
-                  // ตัดส่วน trailing (วันที่) ออกแล้ว
+                 
                 );
               },
             ),

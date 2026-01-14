@@ -34,19 +34,22 @@ class ReportPage extends StatelessWidget {
             ),
             
             const SizedBox(height: 10),
+
             if (note.isNotEmpty) Text('Note: $note', style: const TextStyle(color: Colors.grey)),
+            
             const SizedBox(height: 40),
+           
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo),
               onPressed: () {
                 Navigator.pop(context, {
                   "amount": amount,
                   "note": note,
-                  "date": "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}"
                 });
               },
               child: const Text('กลับสู่หน้าหลัก', style: TextStyle(color: Colors.white)),
             ),
+            
           ],
         ),
       ),
